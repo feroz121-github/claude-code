@@ -12,7 +12,12 @@ import { ChatInterface } from "@/components/chat/ChatInterface";
 import { FileTree } from "@/components/editor/FileTree";
 import { CodeEditor } from "@/components/editor/CodeEditor";
 import { PreviewFrame } from "@/components/preview/PreviewFrame";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 import { HeaderActions } from "@/components/HeaderActions";
 
 interface MainContentProps {
@@ -32,6 +37,9 @@ interface MainContentProps {
 
 export function MainContent({ user, project }: MainContentProps) {
   const [activeView, setActiveView] = useState<"preview" | "code">("preview");
+
+  const triggerClass =
+    "cursor-pointer select-none data-[state=active]:bg-white data-[state=active]:text-neutral-900 data-[state=active]:shadow-sm text-neutral-600 hover:text-neutral-900 px-4 py-1.5 text-sm font-medium transition-colors";
 
   return (
     <FileSystemProvider initialData={project?.data}>
@@ -57,57 +65,67 @@ export function MainContent({ user, project }: MainContentProps) {
 
             {/* Right Panel - Preview/Code */}
             <ResizablePanel defaultSize={65}>
-              <div className="h-full flex flex-col bg-white">
+              <Tabs
+                value={activeView}
+                onValueChange={(v) =>
+                  setActiveView(v as "preview" | "code")
+                }
+                className="h-full flex flex-col bg-white gap-0"
+              >
                 {/* Top Bar */}
-                <div className="h-14 border-b border-neutral-200/60 px-6 flex items-center justify-between bg-neutral-50/50">
-                  <Tabs
-                    value={activeView}
-                    onValueChange={(v) =>
-                      setActiveView(v as "preview" | "code")
-                    }
-                  >
-                    <TabsList className="bg-white/60 border border-neutral-200/60 p-0.5 h-9 shadow-sm">
-                      <TabsTrigger value="preview" className="data-[state=active]:bg-white data-[state=active]:text-neutral-900 data-[state=active]:shadow-sm text-neutral-600 px-4 py-1.5 text-sm font-medium transition-all">Preview</TabsTrigger>
-                      <TabsTrigger value="code" className="data-[state=active]:bg-white data-[state=active]:text-neutral-900 data-[state=active]:shadow-sm text-neutral-600 px-4 py-1.5 text-sm font-medium transition-all">Code</TabsTrigger>
-                    </TabsList>
-                  </Tabs>
+                <div className="h-14 shrink-0 border-b border-neutral-200/60 px-6 flex items-center justify-between bg-neutral-50/50">
+                  <TabsList className="bg-neutral-100 border border-neutral-200/60 p-0.5 h-9 shadow-sm">
+                    <TabsTrigger value="preview" className={triggerClass}>
+                      Preview
+                    </TabsTrigger>
+                    <TabsTrigger value="code" className={triggerClass}>
+                      Code
+                    </TabsTrigger>
+                  </TabsList>
                   <HeaderActions user={user} projectId={project?.id} />
                 </div>
 
                 {/* Content Area */}
-                <div className="flex-1 overflow-hidden bg-neutral-50">
-                  {activeView === "preview" ? (
-                    <div className="h-full bg-white">
-                      <PreviewFrame />
-                    </div>
-                  ) : (
-                    <ResizablePanelGroup
-                      direction="horizontal"
-                      className="h-full"
+                <TabsContent
+                  value="preview"
+                  forceMount
+                  className="flex-1 overflow-hidden bg-neutral-50 mt-0 data-[state=inactive]:hidden"
+                >
+                  <div className="h-full bg-white">
+                    <PreviewFrame />
+                  </div>
+                </TabsContent>
+                <TabsContent
+                  value="code"
+                  forceMount
+                  className="flex-1 overflow-hidden bg-neutral-50 mt-0 data-[state=inactive]:hidden"
+                >
+                  <ResizablePanelGroup
+                    direction="horizontal"
+                    className="h-full"
+                  >
+                    {/* File Tree */}
+                    <ResizablePanel
+                      defaultSize={30}
+                      minSize={20}
+                      maxSize={50}
                     >
-                      {/* File Tree */}
-                      <ResizablePanel
-                        defaultSize={30}
-                        minSize={20}
-                        maxSize={50}
-                      >
-                        <div className="h-full bg-neutral-50 border-r border-neutral-200">
-                          <FileTree />
-                        </div>
-                      </ResizablePanel>
+                      <div className="h-full bg-neutral-50 border-r border-neutral-200">
+                        <FileTree />
+                      </div>
+                    </ResizablePanel>
 
-                      <ResizableHandle className="w-[1px] bg-neutral-200 hover:bg-neutral-300 transition-colors" />
+                    <ResizableHandle className="w-[1px] bg-neutral-200 hover:bg-neutral-300 transition-colors" />
 
-                      {/* Code Editor */}
-                      <ResizablePanel defaultSize={70}>
-                        <div className="h-full bg-white">
-                          <CodeEditor />
-                        </div>
-                      </ResizablePanel>
-                    </ResizablePanelGroup>
-                  )}
-                </div>
-              </div>
+                    {/* Code Editor */}
+                    <ResizablePanel defaultSize={70}>
+                      <div className="h-full bg-white">
+                        <CodeEditor />
+                      </div>
+                    </ResizablePanel>
+                  </ResizablePanelGroup>
+                </TabsContent>
+              </Tabs>
             </ResizablePanel>
           </ResizablePanelGroup>
         </div>
