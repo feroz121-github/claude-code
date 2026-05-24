@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path C:\\\\Projects_GIT\\\\uigen\\\\src\\\\hooks -Recurse | Select-Object @{Name=\"Path\";Expression={$_.FullName -replace [regex]::Escape\\(\"C:\\\\Projects_GIT\\\\uigen\\\\\"\\), \"\"}} | Sort-Object Path)"
+    ]
+  }
+}

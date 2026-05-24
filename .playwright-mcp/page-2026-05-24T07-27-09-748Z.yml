@@ -1,0 +1,84 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - heading "React Component Generator" [level=1] [ref=e7]
+      - generic [ref=e10]:
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - generic [ref=e59]: Create a user registration form with fields for full name, email, password, confirm password, and a terms & conditions checkbox. Make it look modern and polished.
+            - img [ref=e62]
+          - generic [ref=e78]:
+            - img [ref=e81]
+            - generic [ref=e86]:
+              - generic [ref=e89]: str_replace_editor
+              - separator [ref=e90]
+              - generic [ref=e91]:
+                - paragraph [ref=e92]: "Done! I've created a modern registration form with:"
+                - paragraph [ref=e93]:
+                  - strong [ref=e94]: "Features:"
+                - list [ref=e95]:
+                  - listitem [ref=e96]: All requested fields (full name, email, password, confirm password, terms checkbox)
+                  - listitem [ref=e97]: Password visibility toggles with eye icons
+                  - listitem [ref=e98]: Real-time validation with error messages
+                  - listitem [ref=e99]: Success notification after submission
+                  - listitem [ref=e100]: Gradient background and polished card design
+                  - listitem [ref=e101]: Responsive layout
+                  - listitem [ref=e102]: Smooth animations and transitions
+                  - listitem [ref=e103]: Form resets after successful submission
+                - paragraph [ref=e104]: The form validates all fields and shows helpful error messages with icons. The design uses a blue/indigo color scheme with Tailwind CSS for a modern, professional look.
+        - generic [ref=e21]:
+          - textbox "Describe the React component you want to create..." [ref=e22]
+          - button [disabled] [ref=e23]:
+            - img [ref=e24]
+    - separator [ref=e27]
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - tablist [ref=e32]:
+          - tab "Preview" [selected] [ref=e33]
+          - tab "Code" [ref=e34]
+        - generic [ref=e35]:
+          - button "Sign In" [ref=e36]
+          - button "Sign Up" [ref=e37]
+      - iframe [ref=e105]:
+        - generic [ref=f4e5]:
+          - generic [ref=f4e6]:
+            - heading "Create Account" [level=1] [ref=f4e7]
+            - paragraph [ref=f4e8]: Join us today and get started
+          - generic [ref=f4e9]:
+            - generic [ref=f4e10]:
+              - generic [ref=f4e11]: Full Name
+              - textbox "Full Name" [ref=f4e12]:
+                - /placeholder: John Doe
+            - generic [ref=f4e13]:
+              - generic [ref=f4e14]: Email Address
+              - textbox "Email Address" [ref=f4e15]:
+                - /placeholder: you@example.com
+            - generic [ref=f4e16]:
+              - generic [ref=f4e17]: Password
+              - generic [ref=f4e18]:
+                - textbox "Password" [ref=f4e19]:
+                  - /placeholder: ••••••••
+                - button [ref=f4e20] [cursor=pointer]:
+                  - img [ref=f4e21]
+            - generic [ref=f4e24]:
+              - generic [ref=f4e25]: Confirm Password
+              - generic [ref=f4e26]:
+                - textbox "Confirm Password" [ref=f4e27]:
+                  - /placeholder: ••••••••
+                - button [ref=f4e28] [cursor=pointer]:
+                  - img [ref=f4e29]
+            - generic [ref=f4e33] [cursor=pointer]:
+              - checkbox "I agree to the Terms & Conditions and Privacy Policy" [ref=f4e34]
+              - generic [ref=f4e35]:
+                - text: I agree to the
+                - link "Terms & Conditions" [ref=f4e36]:
+                  - /url: "#"
+                - text: and
+                - link "Privacy Policy" [ref=f4e37]:
+                  - /url: "#"
+            - button "Create Account" [ref=f4e38] [cursor=pointer]
+          - paragraph [ref=f4e39]:
+            - text: Already have an account?
+            - link "Sign in" [ref=f4e40] [cursor=pointer]:
+              - /url: "#"
+  - alert [ref=e49]
